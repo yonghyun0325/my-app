@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Main from './main/Main';
+import Main from './main/main';
 import Login from './login/Login';
 import Join from './join/Join';
 
