@@ -3,6 +3,7 @@ import Header from './main/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Banner from './main/Banner';
 import Section from './main/Section';
+import Footer from './main/Footer';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         />
         <Section title="인기 영화" items={popularMovies} />
         <Section title="새로 올라온 콘텐츠" items={newReleases} />
+        <Footer />
       </div>
     </Router>
   );
