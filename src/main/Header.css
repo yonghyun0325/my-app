@@ -1,0 +1,76 @@
+body{
+    background-color: #141414;
+}
+
+/* 기본 헤더 스타일 */
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* 로고 스타일 */
+.header__logo {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 내비게이션 스타일 */
+.header__nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header__nav li {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.header__nav li a {
+    color: white;
+    text-decoration: none;
+}
+
+.header__nav li a:hover {
+    color: #e50914; /* 넷플릭스 빨간색 */
+}
+
+/* 아이콘 스타일 */
+.header__icons {
+    display: flex;
+    gap: 15px;
+}
+
+.header__icon {
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.header__icon:hover {
+    color: #e50914; /* 넷플릭스 빨간색 */
+}
+
+.header__profile {
+    font-size: 22px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .header__nav ul {
+        display: none; /* 작은 화면에서는 메뉴 숨기기 */
+    }
+    .header__icons {
+        gap: 10px;
+    }
+}
