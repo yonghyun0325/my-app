@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    background: #141414;
+}
+
+.loginSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loginCard {
+    margin: 0 auto;
+    display: flex;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 800px;
+    height: 450px;
+}
+
+.loginLeft {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc); /* 그라데이션 */
+}
+
+.logoImage {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    cursor: pointer;
+}
+
+.loginRight {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} 
+.loginRight > h2 {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+}
+
+.loginRight .inputBox {
+    margin-bottom: 1.5rem;
+} 
+.loginRight .inputBox label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+.loginRight .inputBox input {
+    width: 100%;
+    padding: 0.8rem 2.5rem 0.8rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+.loginRight .inputBox input:focus {
+    border-color: #6a11cb;
+    outline: none;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+}
+
+.loginRight .inputPassword {
+    position: relative; /* 부모 요소 설정 */
+}
+.loginRight .inputPassword button {
+    position: absolute; /* 버튼을 input 안에 고정 */
+    right: 10px; /* 오른쪽 여백 */
+    top: 50%; /* 수직 중앙 정렬 */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #888;
+    padding: 0;
+}
+.loginRight .inputPassword button:hover {
+    color: #6a11cb;
+}
+
+.loginButton {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background: #6a11cb;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.loginButton:hover {
+    background: #2575fc;
+}  
+
+.loginRight .linkBox {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0.5rem;
+}
+.loginRight .linkBox > span, .linkBox > a {
+    color: #333;
+}
+.loginRight .linkBox > a:hover{
+    color: #2575fc;
+}

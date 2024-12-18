@@ -1,11 +1,16 @@
 import React from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom'; // 리액트 라우터 사용시
+import { Link, useNavigate } from 'react-router-dom'; // 리액트 라우터 사용시
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 function Header() {
+    const navigate = useNavigate();
+    const goLogin = () => {
+        navigate("/login");
+    }
+
     return (
         <header className="header">
             <div className="header__logo">FilmVerse</div>
@@ -21,7 +26,7 @@ function Header() {
             <div className="header__icons">
                 <FontAwesomeIcon icon={faSearch} className="header__icon" />
                 <FontAwesomeIcon icon={faBell} className="header__icon" />
-                <FontAwesomeIcon icon={faUser} className="header__icon header__profile" />
+                <FontAwesomeIcon icon={faUser} className="header__icon header__profile" onClick={goLogin} />
             </div>
         </header>
     );
