@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import "./Join.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 function Join() {
 
@@ -17,33 +18,37 @@ function Join() {
 
     //폼 데이터 관리
     const [formData, setFormData] = useState({
-        email: '',
-        nickname: '',
-        password: '',
+        id: '',
+        nickName: '',
+        pw: ''
     });
     
+    //네비게이션
     const navigate = useNavigate();
     const goMain = () => {
         navigate("/");
     }
+    const goLogin = () => {
+        navigate("/login");
+    }
 
     // 비밀번호 유효성 검사
     const passwordCheck = (e) => {
-        const password = e.target.value;
+        const pw = e.target.value;
 
-        if (password.length < 6) {
+        if (pw.length < 6) {
             setErrorPw('비밀번호는 6자 이상 입력해주세요.');
 
         }else{
             const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,30}$/;
             
-            if(!regex.test(password)){
+            if(!regex.test(pw)){
                 setErrorPw('영대소문자, 숫자, 특수문자를 조합하여 6~30자로 입력하세요.');
             }else{
                 setErrorPw('ok');
             }
         }
-        setFormData({ ...formData, password });
+        setFormData({ ...formData, pw });
     }  
 
     //폼 데이터에 이름, 닉네임 저장
@@ -53,15 +58,36 @@ function Join() {
     }
 
     //폼 제출
-    const formSubmit = (e) => {
+    const joinSubmit = (e) => {
         e.preventDefault(); //폼 제출 막기
+        setCheckId('');
+        setCheckNick('');
 
         if(errorPw !== 'ok'){
             alert("비밀번호를 알맞게 작성해주세요.");
             return;
         }
 
+            axios.post('http://localhost:8081/FilmVerse/member/joinMember', formData)
+                .then(response => {
+                    if(response.data === 'duplicateIdNick') {
+                        setCheckId("이미 존재하는 아이디입니다.");
+                        setCheckNick("이미 존재하는 닉네임입니다.");
+                        
+                    }else if(response.data === 'duplicateId'){
+                        setCheckId("이미 존재하는 아이디입니다.");
 
+                    }else if(response.data === 'duplicateNick'){
+                        setCheckNick("이미 존재하는 닉네임입니다.");
+
+                    }else if(response.data === 'ok'){
+                        goLogin();
+
+                    }else{
+                        alert('회원가입 중 오류가 발생했습니다.');
+                    }
+                })
+                .catch(error => alert('회원가입 중 오류가 발생했습니다.'+error))
 
     }
 
@@ -73,19 +99,17 @@ function Join() {
                 </div>
                 <div className="joinRight">
                     <h2>회원가입</h2>
-                    <form onSubmit={formSubmit}>
+                    <form onSubmit={joinSubmit}>
                         <div className="inputBox joinId">
                             <label>아이디(이메일)</label>
                             <input type="email" placeholder="example@FilmVerse.com" required maxLength={30} 
-                                name="email" value={formData.email} onChange={handleChange} />
-                            <p>이미 존재하는 아이디입니다.</p>
+                                name="id" value={formData.id} onChange={handleChange} />
                             {checkId && <p>{checkId}</p>}
                         </div>
                         <div className="inputBox joinNick">
                             <label>닉네임</label>
                             <input type="text" placeholder="닉네임을 입력하세요(3-8자리)" required minLength={3} maxLength={8} 
-                                name="nickname" value={formData.nickname} onChange={handleChange} />
-                            <p>이미 존재하는 닉네임입니다.</p>
+                                name="nickName" value={formData.nickName} onChange={handleChange} />
                             {checkNick && <p>{checkNick}</p>}
                         </div>
                         <div className="inputBox">
@@ -98,7 +122,7 @@ function Join() {
                                     maxLength={30}
                                     onChange={passwordCheck}
                                     name="password"
-                                    value={formData.password}
+                                    value={formData.pw}
                                 />
                                 <button type="button" onClick={() => setShowPw(!showPw)}>
                                     <FontAwesomeIcon
