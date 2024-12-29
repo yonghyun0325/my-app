@@ -41,7 +41,7 @@ dependencies {
 	implementation 'com.oracle.database.jdbc:ojdbc6:11.2.0.4'
 	
 	//Mybatis
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 }
 
 tasks.named('test') {
